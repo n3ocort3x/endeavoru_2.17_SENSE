@@ -44,16 +44,16 @@ static const unsigned int cpu_cold_offs_mhz[MAX_DVFS_FREQS] = {
 	  50,  50,  50,  50,  50,  50,  50,  50,  50,   50,   50,   50,   50,   50,   50,   50,   50,   50};
 
 int avp_millivolts[MAX_DVFS_FREQS] = {
-	950, 1000, 1050, 1100, 1150, 1200, 1250, 1300};
+	900, 950, 1000, 1050, 1100, 1150, 1200, 1250};
 
 int lp_cpu_millivolts[MAX_DVFS_FREQS] = {
-	950, 1000, 1050, 1100, 1150, 1200, 1250, 1300};
+	900, 950, 1000, 1050, 1100, 1150, 1200, 1250};
 
 int emc_millivolts[MAX_DVFS_FREQS] = {
-	950, 1000, 1050, 1100, 1150, 1200, 1250, 1300};
+	900, 950, 1000, 1050, 1100, 1150, 1200, 1250};
 
 static const int core_millivolts[MAX_DVFS_FREQS] = {
-	950, 1000, 1050, 1100, 1150, 1200, 1250, 1300};
+	900, 950, 1000, 1050, 1100, 1150, 1200, 1250};
 
 #define KHZ 1000
 #define MHZ 1000000
@@ -75,8 +75,8 @@ static struct dvfs_rail tegra3_dvfs_rail_vdd_cpu = {
 
 static struct dvfs_rail tegra3_dvfs_rail_vdd_core = {
 	.reg_id = "vdd_core",
-	.max_millivolts = 1300,
-	.min_millivolts = 950,
+	.max_millivolts = 1250,
+	.min_millivolts = 900,
 	.step = VDD_SAFE_STEP,
 };
 
@@ -87,7 +87,7 @@ static struct dvfs_rail *tegra3_dvfs_rails[] = {
 
 static int tegra3_get_core_floor_mv(int cpu_mv)
 {
-	if (cpu_mv < 850)
+	if (cpu_mv < 900)
 		return  950;
 	if (cpu_mv < 900)
 		return 1000;
@@ -253,13 +253,13 @@ static struct dvfs core_dvfs_table[] = {
 	CORE_DVFS("vi", core_millivolts, 3, 1, KHZ,        1,      1,      1,      1,      1,       1,  300000,  300000),
 
 #ifdef CONFIG_TEGRA_3D_GPU_OVERCLOCK
-	CORE_DVFS("vde", avp_millivolts, 1, 1, KHZ,        1, 247000, 304000, 400000, 484000,  520000,  520000,  520000),
-	CORE_DVFS("mpe", avp_millivolts, 1, 1, KHZ,        1, 247000, 304000, 400000, 484000,  520000,  520000,  520000),
-	CORE_DVFS("2d", avp_millivolts, 1, 1, KHZ,        1, 247000, 304000, 400000, 484000,  520000,  520000,  520000),
-	CORE_DVFS("epp", avp_millivolts, 1, 1, KHZ,        1, 247000, 304000, 400000, 484000,  520000,  520000,  520000),
-	CORE_DVFS("3d", avp_millivolts, 1, 1, KHZ,        1, 247000, 304000, 400000, 484000,  520000,  520000,  520000),
-	CORE_DVFS("3d2", avp_millivolts, 1, 1, KHZ,        1, 247000, 304000, 400000, 484000,  520000,  520000,  520000),
-	CORE_DVFS("se", avp_millivolts, 1, 1, KHZ,        1, 247000, 304000, 400000, 484000,  520000,  520000,  520000),
+	CORE_DVFS("vde", avp_millivolts, 1, 1, KHZ,        1, 247000, 304000, 400000, 484000,  540000,  540000,  540000),
+	CORE_DVFS("mpe", avp_millivolts, 1, 1, KHZ,        1, 247000, 304000, 400000, 484000,  540000,  540000,  540000),
+	CORE_DVFS("2d", avp_millivolts, 1, 1, KHZ,        1, 247000, 304000, 400000, 484000,  540000,  540000,  540000),
+	CORE_DVFS("epp", avp_millivolts, 1, 1, KHZ,        1, 247000, 304000, 400000, 484000,  540000,  540000,  540000),
+	CORE_DVFS("3d", avp_millivolts, 1, 1, KHZ,        1, 247000, 304000, 400000, 484000,  540000,  540000,  540000),
+	CORE_DVFS("3d2", avp_millivolts, 1, 1, KHZ,        1, 247000, 304000, 400000, 484000,  540000,  540000,  540000),
+	CORE_DVFS("se", avp_millivolts, 1, 1, KHZ,        1, 247000, 304000, 400000, 484000,  540000,  540000,  540000),
 #else
 	CORE_DVFS("vde", avp_millivolts, 0, 1, KHZ,        1, 228000, 275000, 332000, 380000,  416000,  416000,  416000),
 	CORE_DVFS("mpe", avp_millivolts, 0, 1, KHZ,        1, 234000, 285000, 332000, 380000,  416000,  416000,  416000),
@@ -271,13 +271,13 @@ static struct dvfs core_dvfs_table[] = {
 #endif
 
 #ifdef CONFIG_TEGRA_3D_GPU_OVERCLOCK
-	CORE_DVFS("vde", avp_millivolts, 1, 1, KHZ,        1, 247000, 304000, 400000, 484000,  520000,  520000,  520000),
-	CORE_DVFS("mpe", avp_millivolts, 1, 1, KHZ,        1, 247000, 304000, 400000, 484000,  520000,  520000,  520000),
-	CORE_DVFS("2d", avp_millivolts, 1, 1, KHZ,        1, 247000, 304000, 400000, 484000,  520000,  520000,  520000),
-	CORE_DVFS("epp", avp_millivolts, 1, 1, KHZ,        1, 247000, 304000, 400000, 484000,  520000,  520000,  520000),
-	CORE_DVFS("3d", avp_millivolts, 1, 1, KHZ,        1, 247000, 304000, 400000, 484000,  520000,  520000,  520000),
-	CORE_DVFS("3d2", avp_millivolts, 1, 1, KHZ,        1, 247000, 304000, 400000, 484000,  520000,  520000,  520000),
-	CORE_DVFS("se", avp_millivolts, 1, 1, KHZ,        1, 247000, 304000, 400000, 484000,  520000,  520000,  520000),
+	CORE_DVFS("vde", avp_millivolts, 1, 1, KHZ,        1, 247000, 304000, 400000, 484000,  540000,  540000,  540000),
+	CORE_DVFS("mpe", avp_millivolts, 1, 1, KHZ,        1, 247000, 304000, 400000, 484000,  540000,  540000,  540000),
+	CORE_DVFS("2d", avp_millivolts, 1, 1, KHZ,        1, 247000, 304000, 400000, 484000,  540000,  540000,  540000),
+	CORE_DVFS("epp", avp_millivolts, 1, 1, KHZ,        1, 247000, 304000, 400000, 484000,  540000,  540000,  540000),
+	CORE_DVFS("3d", avp_millivolts, 1, 1, KHZ,        1, 247000, 304000, 400000, 484000,  540000,  540000,  540000),
+	CORE_DVFS("3d2", avp_millivolts, 1, 1, KHZ,        1, 247000, 304000, 400000, 484000,  540000,  540000,  540000),
+	CORE_DVFS("se", avp_millivolts, 1, 1, KHZ,        1, 247000, 304000, 400000, 484000,  540000,  540000,  540000),
 #else
 	CORE_DVFS("vde", avp_millivolts, 1, 1, KHZ,        1, 228000, 275000, 332000, 380000,  416000,  416000,  416000),
 	CORE_DVFS("mpe", avp_millivolts, 1, 1, KHZ,        1, 234000, 285000, 332000, 380000,  416000,  416000,  416000),
@@ -288,13 +288,13 @@ static struct dvfs core_dvfs_table[] = {
 	CORE_DVFS("se", avp_millivolts, 1, 1, KHZ,        1, 267000, 285000, 332000, 380000,  416000,  416000,  416000),
 #endif
 
-	CORE_DVFS("vde", avp_millivolts, 2, 1, KHZ,        1, 247000, 304000, 352000, 400000,  437000,  484000,  520000),
-	CORE_DVFS("mpe", avp_millivolts, 2, 1, KHZ,        1, 247000, 304000, 361000, 408000,  446000,  484000,  520000),
-	CORE_DVFS("2d", avp_millivolts, 2, 1, KHZ,        1, 267000, 304000, 361000, 408000,  446000,  484000,  520000),
-	CORE_DVFS("epp", avp_millivolts, 2, 1, KHZ,        1, 267000, 304000, 361000, 408000,  446000,  484000,  520000),
-	CORE_DVFS("3d", avp_millivolts, 2, 1, KHZ,        1, 247000, 304000, 361000, 408000,  446000,  484000,  520000),
-	CORE_DVFS("3d2", avp_millivolts, 2, 1, KHZ,        1, 247000, 304000, 361000, 408000,  446000,  484000,  520000),
-	CORE_DVFS("se", avp_millivolts, 2, 1, KHZ,        1, 267000, 304000, 361000, 408000,  446000,  484000,  520000),
+	CORE_DVFS("vde", avp_millivolts, 2, 1, KHZ,        1, 247000, 304000, 352000, 400000,  437000,  484000,  540000),
+	CORE_DVFS("mpe", avp_millivolts, 2, 1, KHZ,        1, 247000, 304000, 361000, 408000,  446000,  484000,  540000),
+	CORE_DVFS("2d", avp_millivolts, 2, 1, KHZ,        1, 267000, 304000, 361000, 408000,  446000,  484000,  540000),
+	CORE_DVFS("epp", avp_millivolts, 2, 1, KHZ,        1, 267000, 304000, 361000, 408000,  446000,  484000,  540000),
+	CORE_DVFS("3d", avp_millivolts, 2, 1, KHZ,        1, 247000, 304000, 361000, 408000,  446000,  484000,  540000),
+	CORE_DVFS("3d2", avp_millivolts, 2, 1, KHZ,        1, 247000, 304000, 361000, 408000,  446000,  484000,  540000),
+	CORE_DVFS("se", avp_millivolts, 2, 1, KHZ,        1, 267000, 304000, 361000, 408000,  446000,  484000,  540000),
 
 	CORE_DVFS("vde", avp_millivolts, 3, 1, KHZ,        1,      1,      1,      1,      1,       1,  484000,  484000),
 	CORE_DVFS("mpe", avp_millivolts, 3, 1, KHZ,        1,      1,      1,      1,      1,       1,  484000,  484000),
@@ -310,13 +310,13 @@ static struct dvfs core_dvfs_table[] = {
 	CORE_DVFS("host1x", core_millivolts, 3, 1, KHZ,        1,      1,      1,      1,      1,       1,  300000,  300000),
 
 #ifdef CONFIG_TEGRA_3D_GPU_OVERCLOCK
-	CORE_DVFS("cbus", avp_millivolts, 0, 1, KHZ,        1, 247000, 304000, 400000, 484000,  520000,  520000,  520000),
-	CORE_DVFS("cbus", avp_millivolts, 1, 1, KHZ,        1, 247000, 304000, 400000, 484000,  520000,  520000,  520000),
+	CORE_DVFS("cbus", avp_millivolts, 0, 1, KHZ,        1, 247000, 304000, 400000, 484000,  540000,  540000,  540000),
+	CORE_DVFS("cbus", avp_millivolts, 1, 1, KHZ,        1, 247000, 304000, 400000, 484000,  540000,  540000,  540000),
 #else
 	CORE_DVFS("cbus", avp_millivolts, 0, 1, KHZ,        1, 228000, 275000, 332000, 380000,  416000,  416000,  416000),
 	CORE_DVFS("cbus", avp_millivolts, 1, 1, KHZ,        1, 228000, 275000, 332000, 380000,  416000,  416000,  416000),
 #endif
-	CORE_DVFS("cbus", avp_millivolts, 2, 1, KHZ,        1, 247000, 304000, 352000, 400000,  437000,  484000,  520000),
+	CORE_DVFS("cbus", avp_millivolts, 2, 1, KHZ,        1, 247000, 304000, 352000, 400000,  437000,  484000,  540000),
 	CORE_DVFS("cbus", avp_millivolts, 3, 1, KHZ,        1, 484000, 484000, 484000, 484000,  484000,  484000,  484000),
 
 	CORE_DVFS("pll_c", core_millivolts,  -1, 1, KHZ,  533000, 667000, 667000, 800000, 800000, 1066000, 1066000, 1066000),
