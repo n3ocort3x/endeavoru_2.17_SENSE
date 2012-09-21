@@ -14,7 +14,6 @@
  *
  */
 
-#include <linux/module.h>
 #include <linux/kobject.h>
 #include <linux/sysfs.h>
 #include <linux/s2w-switch.h>
@@ -45,7 +44,7 @@ static struct attribute_group attr_group = {
 
 static struct kobject *s2w_switch_kobj;
 
-static int __devinit s2w_switch_init(void)
+int s2w_switch_init(void)
 {
 	int retval;
 
@@ -60,7 +59,7 @@ static int __devinit s2w_switch_init(void)
 }
 /* end sysfs interface */
 
-static void __exit s2w_switch_exit(void)
+void s2w_switch_exit(void)
 {
 	kobject_put(s2w_switch_kobj);
 }
