@@ -44,16 +44,16 @@ static const unsigned int cpu_cold_offs_mhz[MAX_DVFS_FREQS] = {
 	  50,  50,  50,  50,  50,  50,  50,  50,  50,   50,   50,   50,   50,   50,   50,   50,   50,   50};
 
 int avp_millivolts[MAX_DVFS_FREQS] = {
-	900, 950, 1000, 1050, 1100, 1150, 1200, 1250};
+	875, 925, 975, 1025, 1075, 1125, 1175, 1215};
 
 int lp_cpu_millivolts[MAX_DVFS_FREQS] = {
-	900, 950, 1000, 1050, 1100, 1150, 1200, 1250};
+	875, 925, 975, 1025, 1075, 1125, 1175, 1215};
 
 int emc_millivolts[MAX_DVFS_FREQS] = {
-	900, 950, 1000, 1050, 1100, 1150, 1200, 1250};
+	875, 925, 975, 1025, 1075, 1125, 1175, 1215};
 
 static const int core_millivolts[MAX_DVFS_FREQS] = {
-	900, 950, 1000, 1050, 1100, 1150, 1200, 1250};
+	875, 925, 975, 1025, 1075, 1125, 1175, 1215};
 
 #define KHZ 1000
 #define MHZ 1000000
@@ -75,8 +75,8 @@ static struct dvfs_rail tegra3_dvfs_rail_vdd_cpu = {
 
 static struct dvfs_rail tegra3_dvfs_rail_vdd_core = {
 	.reg_id = "vdd_core",
-	.max_millivolts = 1250,
-	.min_millivolts = 900,
+	.max_millivolts = 1215,
+	.min_millivolts = 875,
 	.step = VDD_SAFE_STEP,
 };
 
