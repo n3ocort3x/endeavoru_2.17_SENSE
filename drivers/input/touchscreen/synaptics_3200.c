@@ -1393,7 +1393,7 @@ static DEVICE_ATTR(fake_event, (S_IWUSR|S_IRUGO),
 
 #endif
 
-struct kobject *android_touch_kobj;
+static struct kobject *android_touch_kobj;
 
 static int synaptics_touch_sysfs_init(void)
 {
